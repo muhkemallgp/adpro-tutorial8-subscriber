@@ -26,3 +26,11 @@ you repository.
 ![alt text](image-1.png)
 
 Dalam contoh tersebut, saya menemukan bahwa ___Subsriber___ mengalami keterlambatan dalam menerima atau memproses data dari jalur pesan dengan jeda 1 detik (1000 ms) untuk setiap prosesnya. Akibatnya, pesan yang di-queued pada jalur pesan akan meningkat seiring dengan penambahan jeda yang diberikan, karena penerbit mengirimkan lebih cepat daripada ___Subsriber___ yang menerima. Dalam kasus saya, jumlah pesan yang di-queued pada jalur pesan adalah 35 untuk 10 kali menjalankan Penerbit.
+
+### 3ConcoleMQProcessWithSleep
+![alt text](image.png)
+![alt text](image-2.png)
+
+Pada hasil SS itu, terlihat bahwa setiap ___Subscriber___ menerima data yang unik ketika ___Publisher___ mengirimkan sejumlah besar data ke antrean pesan. Hal ini terjadi karena setiap ___Subscriber___ beroperasi secara independen seperti aplikasi tersendiri, sehingga mereka mengambil data dari antrean pesan secara terpisah. Setelah data diambil dari antrean pesan, pesan akan hilang dan tidak dapat digunakan oleh aplikasi lain.
+
+Selain itu, menurut saya, untuk meningkatkan kinerja aplikasi ___Subscriber___, langkah yang bisa diambil adalah dengan membuatnya menjadi _multithreading_ agar dapat memproses banyak peristiwa dari ___Publisher___ secara bersamaan.
