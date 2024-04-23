@@ -21,3 +21,8 @@ you repository.
     - localhost:5672: 
         - localhost merujuk pada hostname dari server, di mana hostnya adalah perangkat lokal.
         - 5672 adalah port yang digunakan untuk AMQP.
+
+### MQProcessWithSleep
+![alt text](image-1.png)
+
+Dalam contoh tersebut, saya menemukan bahwa ___Subsriber___ mengalami keterlambatan dalam menerima atau memproses data dari jalur pesan dengan jeda 1 detik (1000 ms) untuk setiap prosesnya. Akibatnya, pesan yang di-queued pada jalur pesan akan meningkat seiring dengan penambahan jeda yang diberikan, karena penerbit mengirimkan lebih cepat daripada ___Subsriber___ yang menerima. Dalam kasus saya, jumlah pesan yang di-queued pada jalur pesan adalah 35 untuk 10 kali menjalankan Penerbit.
